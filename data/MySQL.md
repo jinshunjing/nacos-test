@@ -1,7 +1,26 @@
 # MySQL
 
 ## 问题
-* 手写SQL？
+* 手写SQL：差集，交集，
+
+## SQL语句
+
+### UNION vs UNION ALL
+* UNION ALL不判重，不排序
+* UNION 会判重，会排序
+
+### GROUP BY ... HAVING ...
+* HAVING 后面必须是聚合函数的返回值
+
+### SELECT ... FROM a, b where a.id = b.id ...
+* 联表查询
+
+### SELECT ... FROM a INNER JOIN b on a.id = b.id ..
+* 内连接查询
+
+### SELECT ... FROM a LEFT OUTER JOIN b on a.id = b.id .
+* 外连接查询
+
 
 ## 事务
 事务的ACID属性
@@ -17,10 +36,22 @@
 - 更新丢失：一个事务覆盖了另一个事务的数据更新
 
 事务隔离级别（读数据一致性）：
-- 读未提交 read uncommited：脏读，幻读，不可重复读
-- 读已提交 read commited：幻读，不可重复读
+- 读未提交 read uncommited：脏读，不可重复读，幻读
+- 读已提交 read commited：不可重复读，幻读
 - 可重复读 repeatable read：幻读
 - 可串行化 serializable
+
+
+## MySQL事务隔离级别的实现
+
+### 可重复读
+MVCC多版本并发控制：记录增加两个隐藏列，创建事务版本号，删除事务版本号。更新的时候删除旧记录，创建新记录。查询的时候需满足：
+* 创建版本号小于等于事务版本号
+* 删除版本号大于事务版本号
+
+### 幻读
+读的时候加共享锁或者排他锁
+
 
 ## InnoDB锁机制
 ### 乐观锁
@@ -53,15 +84,6 @@ SELECT语句需要手动加锁：
 ### 特殊的锁
 INSERT INTO ... SELECT, CREATE TABLE ... SELECT 语句会给源表加锁
 
-
-## MySQL事务隔离级别的实现
-### 可重复读
-MVCC多版本并发控制：记录增加两个隐藏列，创建版本号，删除版本号。更新的时候删除旧记录，创建新记录。查询的时候需满足：
-* 创建版本号小于等于事务版本号
-* 删除版本号大于事务版本号
-
-### 幻读
-读的时候加共享锁或者排他锁
 
 # MyBatis
 

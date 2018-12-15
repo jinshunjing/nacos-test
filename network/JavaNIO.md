@@ -2,9 +2,17 @@
 
 ## 内容
 * nio 1.4引入
+* nio 2.0 1.7引入，主要是aio
 * nio.channels 1.4引入
 * nio.charset 1.4引入
 * nio.file 1.7引入
+
+## IO模型
+* 阻塞IO
+* 非阻塞IO
+* 多路复用IO
+* 信号驱动IO
+* 异步IO
 
 ## ByteFactory
 * newByteBuffer
