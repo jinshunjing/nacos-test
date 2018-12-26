@@ -4,15 +4,43 @@
 * 线程池的拒绝策略？
 * 死锁的一些场景？
 
+## Thread
+* 线程的管理？
+* 线程的生命周期？
+* 线程的阻塞？
+* 线程的中断？
+
+### Thread.State
+* NEW
+* RUNNABLE
+* BLOCKED 等待monitor lock
+* WAITING 无期限等待
+* TIMED_WAITING
+* TERMINATED
+* interrupted status
+
+### 静态方法
+* currentThread()
+* holdsLock(Object)
+* sleep(long)
+* yield()
+
+### 方法
+* getId(), getName(), getPriority(), isDaemon()
+* getState(), isAlive(), isInterrupted()
+* getThreadGroup()
+* getUncaughtExceptionHandler()
+* start(), run()
+* interrupt()
+* join(long) 等待线程运行结束
+
 ## 锁
 
 ### sun.misc.Unsafe
 * park 阻塞当前线程
 * unpark 唤醒某个线程
-
 * monitorEnter 锁住对象
 * monitorExit 解锁对象
-
 * compareAndSwapXX 相等才替换
 
 ### LockSupport
