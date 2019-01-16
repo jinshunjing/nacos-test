@@ -1,4 +1,28 @@
 
+
+## Ethereum World State
+* balance, nonce
+* code, storage
+
+
+## 合约编译与部署
+* deployment bytecode: runtime bytecode + initialization
+* runtime bytecode
+
+
+## EVM执行
+* gas: miner fee; refunded
+* dispatcher: check length > 4; switch by function prefix;
+* update world state
+* call other contracts
+
+
+## 图灵完备
+* 一切可计算的问题都能计算
+* 停机问题
+* 执行其他程序
+
+
 ## EVM Data Area 数据区域
 * state
 * code
