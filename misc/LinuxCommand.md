@@ -46,6 +46,21 @@ scp local user@0.0.0.0:/usr/dir/
 rsync user@0.0.0.0:/usr/dir/file local <br/>
 rsync local user@0.0.0.0:/usr/dir/
 
+## 内核态用户态
+* 内核: CPU/进程, RAM/内存，Disk/文件，Network/IO，设备驱动
+* 系统调用: c语言实现
+* 库函数：封装了系统调用，glibc, syscall
+* shell脚本
+* Intel X86 CPU 提供了0-3共4个特权等级，0级表示内核态，3级表示用户态
+* 有些资源只有在内核态才能被访问
+
+### 从用户态切换到内核态
+* 系统调用：0x80中断进入系统调用（软中断）
+* 异常中断
+* 外围设备的中断
+
+
+
 
 
 

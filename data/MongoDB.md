@@ -27,3 +27,30 @@
 
 ### Double, NumberInt, NumberLong
 默认是Double类型
+
+## MMAPv1文件结构
+* http://www.mongoing.com/archives/1484
+* MMAP内存映射
+* 每个数据库database有独立的文件: .ns, .0, .1, ...
+* 数据文件大小每次翻倍
+* 名字空间文件.ns：namespace，对应collection；每个namespace包含多个extent；每个extent包含多条record，对应document;
+* 数据文件内部分成块extent，每个块extent只保留一个名字空间namespace的数据，同一个namespace的所有extent之间通过双向链表; 
+* 每个块extent中保存多条记录record（document，BSON），记录之间通过双向链表
+* 删除记录：放入DeleteRecord单向链表，根据记录的大小分成多个链表
+* 写入记录：先查看是否有足够大小的DeleteRecord；然后查看空闲的extent；最后创建新的extent，有可能要创建新的数据文件
+* 更新记录：如果记录变小，直接修改；如果记录变大，先删除再添加
+
+## 索引
+* 索引也在数据文件中，是B-Tree
+* Document插入之后会返回一个位置信息DiskLoc，索引的值就是这个位置信息
+* 单字段索引
+* 复合索引，索引前缀
+* 多key索引，数组
+
+### 索引优化
+* 查询计划explain()
+
+
+
+
+
