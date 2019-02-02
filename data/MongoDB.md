@@ -20,10 +20,17 @@
 
 ### _id
 "_id" : ObjectId("5ba1e274d276de40947b06b6")
-时间戳：5ba1e274
-机器标识码：d276de
-进程ID：4094
-随机数：7b06b6
+4字节时间戳：5ba1e274
+3字节机器标识码：d276de
+2字节进程ID：4094
+3字节随机数：7b06b6
+
+### snowflake 雪花
+https://github.com/apache/incubator-shardingsphere/blob/d47354341bf87bf032ba84e29a0cb7dac127083c/sharding-core/src/main/java/org/apache/shardingsphere/core/keygen/generator/impl/SnowflakeShardingKeyGenerator.java
+1位: 0
+41位: 时间戳
+10位: 机器标识码
+12位: 随机数
 
 ### Double, NumberInt, NumberLong
 默认是Double类型

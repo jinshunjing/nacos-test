@@ -14,13 +14,13 @@
 * assign: 从执行引擎传递给工作内存，use: 从工作内存传递给执行引擎
 * 主内存变量是否线程独占：lock与unlock
 
-### 内存屏障指令
-* LoadLoad, StoreStore, LoadStore, StoreLoad
-
 ### volatile
 * 保证共享变量对所有线程可见：写操作会强制刷新主内存，并且使其他线程的缓存无效
 * 禁止指令重排优化
+* 内存屏障指令：LoadLoad, StoreStore, LoadStore, StoreLoad
 
+### happens-before规则
+* A happens-before B, A的结果B可见
 
 ## JVM内存区域
 * PC寄存器：线程私有。如果指向的是本地方法，存放的是undefined。不会导致OOO。
@@ -34,11 +34,21 @@
 * 存放字面量，符号引用量
 * 不仅包括编译时生成的常量，也包括运行时生成的常量
 
+### 栈帧
+* 局部变量表：方法参数 + 局部变量, variable slot 可以复用
+* 操作数栈：进行算术运算
+* 动态连接：运行时常量池？
+* 返回地址：正常返回PC计数器，异常返回异常处理器表
+* 方法返回时：1. 恢复上层方法的局部变量表和操作数栈；2. 返回值压入调用者栈帧的操作数栈；3. 调整PC计数器
+
+* 存储锁记录：复制对象头的Mark Word，叫做Displaced Mark Word
+
+
+
 ### OOM的实例和解决办法
 * 持有大数组，大集合类
-* heap size
-* 限流
-* SoftReference/WeakReference: 缓存对象
+* SoftReference：内存不够时会被回收
+* WeakReference: 不管内存够不够都会被回收
 
 
 ## 垃圾回收
