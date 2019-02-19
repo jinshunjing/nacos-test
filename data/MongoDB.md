@@ -57,7 +57,53 @@ https://github.com/apache/incubator-shardingsphere/blob/d47354341bf87bf032ba84e2
 ### 索引优化
 * 查询计划explain()
 
+## CentOS 7 安装 MongoDB 4.0.1
+下载安装包并解压
+`wget http://downloads.mongodb.org/linux/mongodb-linux-x86_64-rhel70-4.0.1.tgz`
+`tar -xvzf mongodb-linux-x86_64-rhel70-4.0.1.tgz`
+`mv mongodb-linux-x86_64-rhel70-4.0.1 mongodb-4.0.1`
 
+修改环境变量
+`vi /etc/profile`
+`export PATH=$PATH:/opt/mongodb-4.0.1/bin`
+`source /etc/profile`
+
+创建配置文件
+`vi /etc/mongod.conf`
+bind_ip=0.0.0.0
+port=27017
+dbpath=/data/db
+logpath=/var/log/mongod.log
+logappend=true
+fork=true
+auth=true
+
+启动
+`mongod -f /etc/mongod.conf`
+
+连接
+`mongo 127.0.0.1`
+
+创建管理员账户
+`use admin`
+`db.createUser({user:"admin",pwd:"adminpwd",roles:[{role:"root", db:"admin"}]})`
+退出之后再登录需要输入密码
+`db.auth('admin','adminpwd')`
+
+创建应用数据库和账户
+`use appdb`
+`db.createUser({user:"appusr",pwd:"apppwd",roles:[{role:"readWrite", db:"appdb"}]})`
+
+连接
+mongo 127.0.0.1:27017/appdb -u appusr -p apppwd
+
+## 数据库备份与导入
+mongodump -h dbhost -d dbname -o dbdirectory
+mongorestore -h dbhost -d dbname --dir dbdirectory
+
+mongodump -h 47.98.96.138:27017 -u fingo -p 186907189e58f62fd3dc889b0ac6b2be -d fingo -o /opt/ops/mongodb/
+tar -zcvf fingo.tar.gz fingo/
+mongorestore -h 47.98.96.138:27017 -u fingo -p 186907189e58f62fd3dc889b0ac6b2be -d fingo -dir /opt/ops/mongodb/fingo
 
 
 
