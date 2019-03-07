@@ -29,3 +29,11 @@ END_STREAM：表示流的结束
 不仅仅Data帧，Header帧也可以gzip压缩
 
 ## 服务器推送
+
+
+## 错误码
+401: Unauthorized
+500: Internal server error
+502：Bad Gateway 
+503: Service Unavailable
+504: Gateway timeout

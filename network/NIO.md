@@ -8,11 +8,11 @@
 * nio.file 1.7引入
 
 ## IO模型
-* 阻塞IO
-* 非阻塞IO
-* 多路复用IO
-* 信号驱动IO
-* 异步IO
+- 阻塞IO
+- 非阻塞IO
+- 多路复用IO
+- 信号驱动IO
+- 异步IO
 
 ## ByteFactory
 * newByteBuffer

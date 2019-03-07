@@ -1,4 +1,5 @@
 ## 基础知识
+https://www.jianshu.com/writer#/notebooks/33672046/notes/40868185
 
 ## Linux命令
 ### 查看server socket

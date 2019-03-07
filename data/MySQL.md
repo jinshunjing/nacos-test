@@ -5,6 +5,9 @@
 
 ## SQL语句
 
+### ON DUPLICATE KEY UPDATE ...
+- 存在不插入，不存在才插入
+
 ### UNION vs UNION ALL
 * UNION ALL不判重，不排序
 * UNION 会判重，会排序
@@ -21,40 +24,21 @@
 ### SELECT ... FROM a LEFT OUTER JOIN b on a.id = b.id .
 * 外连接查询
 
+### LIMIT a, b
+- a是偏移，从0开始
+- b是记录数目
 
-## 事务
-事务的ACID属性
-- A原子性：全部执行或者全部不执行
-- C一致性：开始和完成时，数据保持一致性
-- I隔离性：独立执行
-- D持久性：数据的修改是永久性的
+### LIMIT b
+- b是记录数目
 
-并发事务处理的问题
-- 脏读：一个事务查询了另一个事务未提交的数据更新
-- 不可重复读：一个事务重新查询，发现了另一个事务更新的数据
-- 幻读：一个事务重新查询，发现了另一个事务插入的数据
-- 更新丢失：一个事务覆盖了另一个事务的数据更新
+### 条件
+- WHERE 
+- GROUP BY
+- HAVING
+- ORDER BY
+- LIMIT
 
-事务隔离级别（读数据一致性）：
-- 读未提交 read uncommited：脏读，不可重复读，幻读
-- 读已提交 read commited：不可重复读，幻读
-- 可重复读 repeatable read：幻读
-- 可串行化 serializable
-
-
-## MySQL事务隔离级别的实现
-
-### 可重复读
-MVCC多版本并发控制：记录增加两个隐藏列，创建事务版本号，删除事务版本号。
-更新的时候删除旧记录，创建新记录。
-查询的时候需满足：
-* 创建版本号小于等于事务版本号
-* 删除版本号大于事务版本号
-
-> 问题：事务A早于事务B开始，事务B查询记录，事务A修改记录并提交，事务B再次查询记录，此时读到了更新后的记录？
-
-### 幻读
-读的时候加共享锁或者排他锁
+### CASE WEHN ... THEN ... ELSE ... END
 
 
 ## InnoDB锁机制
@@ -90,6 +74,36 @@ SELECT语句需要手动加锁：
 ### 特殊的锁
 * 给源表加锁：INSERT INTO ... SELECT, CREATE TABLE ... SELECT
 
+## MVCC下
+- 插入：创建版本号是系统版本号，不是执行事务的ID
+- 删除：删除版本号是系统版本号
+
+### 幻读问题
+- 事务2插入新记录。事务1修改该记录，然后就可以读出该记录
+
+### Next-Key Lock
+- 包含行锁和间隙锁，用于防止幻读
+
+### read view
+- 事务的第一个Select语句创建read view，对应未分配的系统事务ID
+- 看不到read view创建时活跃的事务
+- 看不到read view以后创建的事务
+
+## 主从复制
+- 主：binlog dump线程 - SQL更新语句记录在binlog
+- 从：io线程 - 拉取master的binlog，写入自己的relay log
+- 从：SQL执行线程 - 执行relay log里的语句
+- 基于SQL语句的复制：binlog小，有些语句无法被复制
+- 基于行的复制：可靠性高，任何情况都可以复制，binlog大
+- 混合复制：两种方式都可以用
+
+## delete
+- 不删除，这是加个标志，等到后面的purge线程来删除
+- undo log保留，因为MVCC需要用到
+
+## update
+- 修改非主键，加一个反向的undo log
+- 修改主键，先删除再添加新记录
 
 # MyBatis
 
@@ -103,15 +117,9 @@ SELECT语句需要手动加锁：
 
 # Spring
 
-## 事务的传播行为
-* PROPAGATION_REQUIRED: 默认值。如果没有则新建事务，如果有则加入当前事务
-* PROPAGATION_REQUIRES_NEW: 如果没有则新建事务，如果有则挂起当前事务
-* PROPAGATION_NESTED: 如果没有则新建事务，如果有则新建当前事务的子事务
-* PROPAGATION_SUPPORTS: 如果没有则非事务，如果有则加入当前事务
-* PROPAGATION_NOT_SUPPORTED: 如果没有则非事务，如果有则挂起当前事务
-* PROPAGATION_MANDATORY: 如果没有则抛出异常，如果有则加入当前事务
-* PROPAGATION_NEVER: 如果没有则非事务，如果有则抛出异常
-
 ## @Transactional
 * 只能作用于public方法
 * 动态代理，只能作用于原始对象，this.call() 无效
+
+
+

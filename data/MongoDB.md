@@ -4,6 +4,15 @@
 ## 使用
 * 默认的数据库路径 -dbpath=/data/db
 
+## 副本集Replica Set模式
+- 角色：主节点(primary)，副本节点(secondary)，仲裁者(Arbiter)
+- 仲裁者参与选主，但是如果仲裁者挂了就选不了主，推荐使用没有仲裁者的方案
+- priority高的是主节点，仲裁者设置arbiterOnly=true
+- 主节点写oplog
+- 从节点定期从主机读取oplog，并在本地执行
+- 配置文件加上Replica Set的名字：replSet=
+- 初始化：连上任意一个点击，然后设置rs.initiate(cfg)
+
 
 ## 设计原则
 * 需要单独访问的对象不要内嵌
@@ -12,8 +21,6 @@
 * 一对许多：比如一个block包含多个tx，在block加入tx主键的数组，也可以加入一些tx的冗余字段
 * 一对非常多：比如一个公司有非常多的员工，在员工加入公司的主键，也可以加入一些公司的冗余字段
 * 多对多：使用双向关联，加入主键的数组
-
-
 
 
 ## BSON: Binary JSON
@@ -103,7 +110,5 @@ mongorestore -h dbhost -d dbname --dir dbdirectory
 
 mongodump -h 47.98.96.138:27017 -u fingo -p 186907189e58f62fd3dc889b0ac6b2be -d fingo -o /opt/ops/mongodb/
 tar -zcvf fingo.tar.gz fingo/
-mongorestore -h 47.98.96.138:27017 -u fingo -p 186907189e58f62fd3dc889b0ac6b2be -d fingo -dir /opt/ops/mongodb/fingo
-
-
+mongorestore -h 47.99.196.196:27017 -u fingo -p 186907189e58f62fd3dc889b0ac6b2be -d fingo --dir /opt/fingo/
 

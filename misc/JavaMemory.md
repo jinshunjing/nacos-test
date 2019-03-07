@@ -127,6 +127,14 @@ GC root: Java栈的变量，本地方法栈的变量，方法区的静态变量�
 ### autowired
 * 使@Lazy标签无效
 
+### JVM性能调优
+- jmap -heap pid
+- jmap -histo pid | grep dapp | sort -k 2 -g -r | less
+- jmap -dump:live,format=b,file=d.log pid
+- jhat -port 3000 d.log
+- jstat -gc pid
+
+
 
 
 

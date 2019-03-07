@@ -25,20 +25,6 @@ Http服务器，反向代理，负载均衡
 * weight
 
 
-## CentOS 7 安装 Nginx 1.12.2
-安装
-`yum install nginx`
 
-配置文件
-/etc/nginx/nginx.conf
-日志文件
-/var/log/nginx
 
-启动
-`nginx -c /etc/nginx/nginx.conf`
-
-检查配置文件
-`nginx -t`
-重新加载配置文件
-`nginx -s reload`
 

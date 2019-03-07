@@ -1,3 +1,12 @@
+# 领域建模
+- 领域实体，领域服务
+- 可视化，可配置化
+
+# SOA
+- Service-Oriented Architecture 面向服务架构
+- 服务是松耦合（自包含的），黑盒子，自定义。中央存储库
+
+
 # 设计模式
 
 ## 24种设计模式
@@ -16,7 +25,9 @@
 + 装饰器模式decorator：
 + 外观模式facade：
 + 享元模式flyweight：
+
 + 代理模式proxy：
+Subject, RealSubject, ProxySubject
 
 ### 行为型模式
 + 责任链模式chain of responsibility：使多个对象都有机会处理请求。将对象连成一条链，并沿着这条链传递请求。
@@ -39,7 +50,8 @@ Visitor#visit(Element); Element#accept(Visitor); ObjectStruct#accept(Visitor),Li
 
 + 模版方法模式template：
 
-+ 策略模式strategy：
++ 策略模式strategy：运行时改变一个类的行为或算法
+Strategy#doOperation(); Context#executeStrategy(),Strategy
 
 + 状态模式state：当对象的状态改变时，允许其改变行为。客户端调用Context。状态对象State既要处理当前状态，也要处理如何过渡到下一个状态。
 Context#request(),#getState(),#setState(State),state; State#handle()
@@ -50,10 +62,11 @@ Context#request(),#getState(),#setState(State),state; State#handle()
 
 ### J2EE模式
 + MVC模式：
++ 前端控制器模式front controller：
 + 业务代表模式business delegate：
 + 组合实体模式composite entity：
 + 数据访问对象模式data access object：
-+ 前端控制器模式front controller：
+
 + 拦截过滤器模式intercepting filter：
 + 服务定位器模式service locator:
 + 传输对象模式transfer object：
