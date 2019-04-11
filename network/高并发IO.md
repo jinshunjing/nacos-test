@@ -43,7 +43,7 @@ https://www.jianshu.com/writer#/notebooks/33672046/notes/41681996
 ## Reactor模式
 
 ### 简单模式
-- Reactor/Initiation Dispatcher: 管理Handler的注册，从Synchronous Event Demultiplexer获取事件，然后分发给Handler处理
+- Reactor/Initiation Dispatcher: 分发器，管理Handler的注册，从Synchronous Event Demultiplexer获取事件，然后分发给Handler处理
 - Synchronous Event Demultiplexer: 同步事件分离器/同步事件多路复用，等待事件的发生。比如Java NIO里的Selector
 - Event Handler: 请求的处理
 - Handle：表示一种资源，比如socket文件描述符

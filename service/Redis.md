@@ -54,6 +54,18 @@ gossip协议
 cluster,数据分区，每个node管理一定数量的桶
 每个node采用master-slave
 
+## 数据库
+- 默认16个数据库，编号从0开始。集群里只能使用0号数据库
+- 数据库内部是一个dict结构
+- __keyspace@{dbid}__:{key}频道通知key的操作
+- __keyevents@{dbid}__:{ops}频道通知操作的key
+
+## 过期
+- expires字典（dict）记录key的过期时间
+- 惰性删除策略，操作的时候判断key是否过期，过期则删除
+- 定期删除策略，启一个job，随机删除N个过期的key
+
+
 
 
 

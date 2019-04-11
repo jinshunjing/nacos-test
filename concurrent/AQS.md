@@ -1,8 +1,11 @@
 # AQS框架
 
 ## AbstractQueuedSynchronizer
+- state: 同步状态
+- 两种资源共享方式：exclusive/shared
 - 同步队列 sync queue
 - 条件/等待队列 condition queue
+- 获取锁/释放锁：tryAcquire/tryRelease
 
 ### Node
 - thread: 阻塞的线程

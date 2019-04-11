@@ -50,11 +50,12 @@
 - 类似与两阶段提交，强一致
 
 ## session
-* 属性：sessionID, timeOut, tickTime, isClosing
-* 状态：connecting, connected, close
-* 管理：server根据expirationTime的分桶策略，client需要定期ping server来延期。client发送心跳检查，server激活session，计算新的expirationTime，并迁移session
-* 清理：发起session关闭请求，收集需要清理的临时节点，删除临时节点，移除session
-* 重连：connection_loss, 重连之前的server；session_moved, 重连到另一台server; session_expired，session已经被清理
+- 状态：connecting, connected, reconnecting, reconnected, close
+- Session四个属性：sessionID, timeOut, tickTime, isClosing
+- 管理：分桶策略: (time/expirationInterval + 1) * expirationInterval
+- 激活：(1) client发送读写操作都会触发激活请求；(2) client发现在timeOut/3时间内未和server通信，主动发送PING请求
+- 清理：发起session关闭请求，收集需要清理的临时节点，删除临时节点，移除session
+- 重连：connection_loss, 重连之前的server；session_moved, 重连到另一台server; session_expired，session已经被清理
 
 ## watch 机制
 - 实现Watcher接口，一次性触发

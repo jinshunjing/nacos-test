@@ -22,12 +22,16 @@
 + 适配器模式adapter：
 + 桥接模式bridge：
 + 组合模式composite：
-+ 装饰器模式decorator：
+
 + 外观模式facade：
 + 享元模式flyweight：
 
++ 装饰器模式decorator：
+Decorator, ConcreteDecorator.wrap, Component, ConcreteComponent
+
 + 代理模式proxy：
 Subject, RealSubject, ProxySubject
+Proxy, InvocationHandler, RealSubject
 
 ### 行为型模式
 + 责任链模式chain of responsibility：使多个对象都有机会处理请求。将对象连成一条链，并沿着这条链传递请求。
@@ -37,7 +41,7 @@ Handler#handleRequest()
 + 命令模式command：将请求封装成对象，使请求发送者和请求接受者之间相互隔离
 Invoker#call; Receiver#action; Command#execute,Receiver
 
-+ 备忘录模式memento：快照模式，数据备份机制。发起者Originator只关系备忘录的创建和恢复，备忘录存储在管理者Caretaker
++ 备忘录模式memento：快照模式，数据备份机制。发起者Originator只关心备忘录的创建和恢复，备忘录存储在管理者Caretaker
 Originator#createMemento(),#restoreMemento(Memento),state; Memento.state; Caretaker#saveMemento(Memento),#getMemento()
 
 + 解释器模式interpreter：定义语言的文法，并且建立解释器来解释该语言中的句子

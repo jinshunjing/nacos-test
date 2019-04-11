@@ -18,3 +18,28 @@
 
 ## 斐波那契堆
 
+
+## 跳表
+
+### JDK
+- ConcurrentSkipListMap: 
+- ConcurrentSkipListSet:
+
+
+## 队列
+
+### JDK
+- Queue:
+- LinkedList:
+- ConcurrentLinkedQueue:
+
+- BlockingQueue:
+- ArrayBlockingQueue:
+- LinkedBlockingQueue:
+- PriorityBlockingQueue:
+- SynchronousQueue:
+- DelayQueue: 使用PriorityBlockingQueue
+- LinkedTransferQueue: SynchronousQueue的升级版。transfer时如果有消费者则消费，没有则自旋等待。
+
+
+

@@ -1,6 +1,11 @@
 
 # Dubbo
 
+https://blog.csdn.net/liyue1090041509/article/details/79972508
+
+## 源码分析
+- 线程池模型
+
 ## Dubbo角色
 - provider：服务提供方
 - consumer：服务消费方
@@ -22,9 +27,9 @@
 - failover: 失败自动切换
 - failfast: 失败直接报错
 - failback: 失败自动恢复，定时重发
-- failsafe: 失败安全
-- forking: 并行调用多个
-- broadcast: 广播逐个调用
+- failsafe: 失败安全，忽略异常
+- forking: 并行调用多个，有一个成功就行
+- broadcast: 广播逐个调用，忽略每个节点的异常
 
 - 读操作采用failover, 默认重试两次
 - 写操作采用failfast, 失败就报错

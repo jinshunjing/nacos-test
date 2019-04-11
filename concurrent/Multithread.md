@@ -1,7 +1,13 @@
 # Java线程
+- Thread
+- Runnable/Callable
+- ThreadPoolExecutor
+- ForkJoin
+- synchronized
+- Lock/Condition
+- AQS
 
 ## Thread
-
 ### 状态
 |状态|说明|
 |------|------|
@@ -56,7 +62,7 @@
 - 可重入锁
 
 ### Condition
-- 替换Object monitor
+- 替换Object monitor，wait/notify
 - 关联一个Lock
 - 维护一个等待队列，通常是一个双向链表，存储的是线程对象
 - 主要功能是阻塞当前线程与唤醒线程

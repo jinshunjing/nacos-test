@@ -91,6 +91,24 @@
 * 日志文件：topic/partition/segment ({偏移量}.log, .index, .timeindex，文件大小为1G)
 * 利用磁盘的顺序读写性能
 
+## 协调器
+- GroupCoordinator: 消费组协调器，metadata数据，_comsumer_offsets
+- TransactionCoordinator: 事务协调器，producer与之通信, _transaction_state
+
+## 管理者
+- Broker Controller：broker中有一个是控制器，管理配置数据
+- Consumer Leader: 同一个组中有一个consumer是leader
+
+## 事务
+- kafka EOS 精确一次
+- producer 幂等性：通过producer id, sequence, acks = -1
+- consume-transfer-produce: 消费，offset 提交，生产的原子性，producer.initTx, beginTx, sendOffsets, commitTx, abortTx
+
+## 延时操作
+- acks = -1， 延时生产，超时报错
+- 延时fetch，超时返回
+
+
 
 
 
