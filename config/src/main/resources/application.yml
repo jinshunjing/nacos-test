@@ -1,0 +1,10 @@
+# Server
+server:
+  port: 8666
+
+# Spring
+spring:
+  applicaton:
+    name: my-config
+
+

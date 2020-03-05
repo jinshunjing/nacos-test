@@ -9,6 +9,8 @@
     <version>1.0.0</version>
     <modules>
         <module>provider</module>
+        <module>consumer</module>
+        <module>config</module>
     </modules>
 
     <parent>
@@ -27,7 +29,7 @@
         <project.build.locales>UTF-8</project.build.locales>
         <spring-boot.version>2.1.12.RELEASE</spring-boot.version>
         <spring-cloud.version>Greenwich.SR5</spring-cloud.version>
-        <spring-cloud-alibaba.version>2.1.0.RELEASE</spring-cloud-alibaba.version>
+        <spring-cloud-alibaba.version>2.1.1.RELEASE</spring-cloud-alibaba.version>
         <fastjson.version>1.2.62</fastjson.version>
         <guava.version>28.2-jre</guava.version>
     </properties>

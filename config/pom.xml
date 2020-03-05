@@ -10,18 +10,19 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.jim.nacos</groupId>
-    <artifactId>provider</artifactId>
+    <artifactId>config</artifactId>
     <version>1.0.0</version>
 
     <dependencies>
+        <!-- sleuth -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-sleuth</artifactId>
+        </dependency>
         <!-- nacos -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
     </dependencies>
 
@@ -51,7 +52,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
                     <executable>true</executable>
-                    <mainClass>org.jim.nacos.MyNacosProvider</mainClass>
+                    <mainClass>org.jim.nacos.MyNacosConfig</mainClass>
                 </configuration>
             </plugin>
         </plugins>

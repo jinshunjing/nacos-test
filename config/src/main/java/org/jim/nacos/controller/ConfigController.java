@@ -1,5 +1,6 @@
 package org.jim.nacos.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author Jim
  */
+@Slf4j
 @RestController
 @RequestMapping("/config")
 @RefreshScope
@@ -23,7 +25,7 @@ public class ConfigController {
 
     @RequestMapping("/name")
     public String getName() {
-        System.out.println(name);
+        log.info("Name entrance: {}", name);
         return name;
     }
 

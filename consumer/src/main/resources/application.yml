@@ -1,0 +1,18 @@
+# Server
+server:
+  port: 8663
+
+# nacos
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  application:
+    name: my-consumer
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+
+
+
+
